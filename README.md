@@ -2,14 +2,20 @@
 
 **Software Engineering, Spring 2026**
 
-GIU Nexus is an AI-powered full-stack career and talent platform that connects university students to internships and entry-level positions, equipped with advanced Hugging Face integration for automated skill extraction and intelligent job matching.
+GIU Nexus is a full-stack web application designed to help university students find internships and job opportunities while enabling recruiters to discover suitable candidates more efficiently.  
 
-## Team Members
-* `Student 1 Name - ID`
-* `Student 2 Name - ID`
-* `Student 3 Name - ID`
+The platform integrates AI-powered features using the Hugging Face Inference API to automatically extract skills from student profiles and classify job postings into relevant technical categories. It also provides personalized job recommendations based on skill similarity.
 
-## Project Description
-The system offers job seekers automated skills detection using Named Entity Recognition (NER) models to quickly summarize their capabilities. It allows recruiters to automatically categorize their job listings using zero-shot classification and assists the platform administrators in maintaining high quality postings. 
+## 👥 Team Members
+- Member 1: [renad rafaat]
+- Member 2: [nadeen yasser]
+- Member 3: [malak ehab]
+- Member 4: [judy ahmed]
+- Member 5: [ahmed hesham ]
+- Member 6: [mostafa elsheehy]
+- Member 7: [karem hany]
+- Member 8: [ali sherif]
+- Member 9: [omar abdelkarem]
+- Member 10: [obay habbash]
 
 This repository starts with Milestone 1 focusing on establishing Mongoose database schemas for core domain entities.
