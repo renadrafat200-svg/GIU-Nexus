@@ -1,0 +1,119 @@
+TEAM MEMBER ASSIGNMENTS FOR MILESTONE 1
+==========================================
+
+TEAMMATE 1 (You): 
+You have already pushed the User schema! You are 100% done.
+--------------------------------------------------------------
+
+TEAMMATE 2: JobPost Schema
+Branch name: feat/job-schema
+File to create: models/JobPost.js
+Code to paste inside:
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+const jobPostSchema = new Schema({
+  title: { type: String, required: true },
+  company: { type: String, required: true },
+  description: { type: String, required: true },
+  requirements: { type: [String], required: true },
+  location: { type: String, required: true },
+  type: { type: String, required: true, enum: ['full-time', 'part-time', 'internship'] },
+  salary: { type: Number },
+  category: { type: String, enum: ["Frontend", "Backend", "AI/ML", "DevOps", "Data Engineering", "Other"], default: "Other" },
+  totalSlots: { type: Number, required: true, min: 1 },
+  status: { type: String, enum: ['open', 'closed'], default: 'open' },
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true }
+}, { timestamps: { createdAt: 'createdAt', updatedAt: false } });
+module.exports = mongoose.model('JobPost', jobPostSchema);
+--------------------------------------------------------------
+
+TEAMMATE 3: Application Schema
+Branch name: feat/application-schema
+File to create: models/Application.js
+Code to paste inside:
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+const applicationSchema = new Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  job: { type: Schema.Types.ObjectId, ref: 'JobPost', required: true },
+  coverLetter: { type: String, default: null },
+  status: { type: String, enum: ['pending', 'shortlisted', 'rejected'], default: 'pending' }
+}, { timestamps: { createdAt: 'appliedAt', updatedAt: false } });
+applicationSchema.index({ user: 1, job: 1 }, { unique: true });
+module.exports = mongoose.model('Application', applicationSchema);
+--------------------------------------------------------------
+
+TEAMMATE 4: Main Server File
+Branch name: feat/server-setup
+File to create: server.js
+Code to paste inside:
+const express = require('express');
+const connectDB = require('./config/db');
+connectDB();
+const app = express();
+app.use(express.json());
+app.get('/', (req, res) => res.send('GIU Nexus API'));
+app.listen(5000, () => console.log(`Server on port 5000`));
+--------------------------------------------------------------
+
+TEAMMATE 5: Database Connection
+Branch name: feat/db-connection
+File to create: config/db.js
+Code to paste inside:
+const mongoose = require('mongoose');
+const connectDB = async () => {
+    try { await mongoose.connect(process.env.MONGO_URI); console.log("DB Connected"); } 
+    catch (error) { process.exit(1); }
+};
+module.exports = connectDB;
+--------------------------------------------------------------
+
+TEAMMATE 6: Error Handling Middleware
+Branch name: feat/error-handler
+File to create: middleware/errorHandler.js
+Code to paste inside:
+const errorHandler = (err, req, res, next) => {
+    res.status(500).json({ success: false, error: err.message || 'Server Error' });
+};
+module.exports = errorHandler;
+--------------------------------------------------------------
+
+TEAMMATE 7: Auth & Roles Middleware
+Branch name: feat/auth-middleware
+File to create: middleware/auth.js
+Code to paste inside:
+const protect = async (req, res, next) => { next(); };
+const authorize = (...roles) => { return (req, res, next) => { next(); }; };
+module.exports = { protect, authorize };
+--------------------------------------------------------------
+
+TEAMMATE 8: User Routes
+Branch name: feat/user-routes
+File to create: routes/userRoutes.js
+Code to paste inside:
+const express = require('express');
+const router = express.Router();
+router.post('/register', (req, res) => res.send('register'));
+router.post('/login', (req, res) => res.send('login'));
+module.exports = router;
+--------------------------------------------------------------
+
+TEAMMATE 9: Job Routes
+Branch name: feat/job-routes
+File to create: routes/jobRoutes.js
+Code to paste inside:
+const express = require('express');
+const router = express.Router();
+router.get('/', (req, res) => res.send('get jobs'));
+router.post('/', (req, res) => res.send('create job'));
+module.exports = router;
+--------------------------------------------------------------
+
+TEAMMATE 10: Environment Variables
+Branch name: feat/env-setup
+File to create: .env.example
+Code to paste inside:
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/giu_nexus?retryWrites=true&w=majority
+PORT=5000
+JWT_SECRET=your_secret_key_here
+HUGGINGFACE_API_KEY=your_huggingface_api_key_here
