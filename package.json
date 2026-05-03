@@ -1,0 +1,48 @@
+{
+  "name": "giu-nexus",
+  "version": "1.0.0",
+  "description": "GIU Nexus is a full-stack web application designed to help university students find internships and job opportunities while enabling recruiters to discover suitable candidates more efficiently.",
+  "main": "index.js",
+  "dependencies": {
+    "@huggingface/inference": "^4.13.15",
+    "bcryptjs": "^3.0.3",
+    "bson": "^7.2.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "kareem": "^3.2.0",
+    "memory-pager": "^1.5.0",
+    "mongodb": "^7.1.1",
+    "mongodb-connection-string-url": "^7.0.1",
+    "mongoose": "^9.6.1",
+    "mpath": "^0.9.0",
+    "mquery": "^6.0.0",
+    "ms": "^2.1.3",
+    "nodemailer": "^8.0.7",
+    "punycode": "^2.3.1",
+    "sift": "^17.1.3",
+    "sparse-bitfield": "^3.0.3",
+    "tr46": "^5.1.1",
+    "webidl-conversions": "^7.0.0",
+    "whatwg-url": "^14.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renadrafat200-svg/GIU-Nexus.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/renadrafat200-svg/GIU-Nexus/issues"
+  },
+  "homepage": "https://github.com/renadrafat200-svg/GIU-Nexus#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
