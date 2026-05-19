@@ -17,8 +17,8 @@ const Navbar = () => {
     <nav style={styles.nav}>
       <div style={styles.container}>
         <Link to="/" style={styles.brand}>
-          <span style={styles.brandLogo}>✦</span>
-          GIU<span style={styles.brandHighlight}>Nexus</span>
+          <span style={styles.brandIcon}>✦</span>
+          GIU <span style={styles.brandHighlight}>Nexus</span>
         </Link>
 
         <div style={styles.links}>
@@ -29,7 +29,7 @@ const Navbar = () => {
               ...(isActive('/jobs') ? styles.activeLink : {})
             }}
           >
-            Browse Jobs
+            Explore Jobs
           </Link>
 
           {!isAuthenticated && (
@@ -41,13 +41,13 @@ const Navbar = () => {
                   ...(isActive('/login') ? styles.activeLink : {})
                 }}
               >
-                Login
+                Sign In
               </Link>
               <Link 
                 to="/register" 
                 style={styles.registerBtn}
               >
-                Get Started
+                Join Platform
               </Link>
             </>
           )}
@@ -61,7 +61,7 @@ const Navbar = () => {
                   ...(isActive('/jobs/recommended') ? styles.activeLink : {})
                 }}
               >
-                AI Recommendations
+                AI Job Match
               </Link>
               <Link 
                 to="/jobs/saved" 
@@ -70,7 +70,7 @@ const Navbar = () => {
                   ...(isActive('/jobs/saved') ? styles.activeLink : {})
                 }}
               >
-                Saved
+                Bookmarked
               </Link>
               <Link 
                 to="/applications/my" 
@@ -79,7 +79,7 @@ const Navbar = () => {
                   ...(isActive('/applications/my') ? styles.activeLink : {})
                 }}
               >
-                Applications
+                My Applications
               </Link>
               <Link 
                 to="/profile" 
@@ -88,7 +88,7 @@ const Navbar = () => {
                   ...(isActive('/profile') ? styles.activeLink : {})
                 }}
               >
-                Profile
+                My Profile
               </Link>
             </>
           )}
@@ -111,7 +111,7 @@ const Navbar = () => {
                   ...(isActive('/recruiter/jobs/create') ? styles.activeLink : {})
                 }}
               >
-                Post a Job
+                Post vacancy
               </Link>
             </>
           )}
@@ -159,10 +159,10 @@ const Navbar = () => {
 
           {isAuthenticated && (
             <div style={styles.userContainer}>
-              <span style={styles.userInfo}>
-                {user?.name?.split(' ')[0]} 
+              <div style={styles.userInfo}>
+                <span style={styles.userName}>{user?.name?.split(' ')[0]}</span>
                 <span style={styles.roleTag}>{user?.role}</span>
-              </span>
+              </div>
               <button onClick={handleLogout} style={styles.logoutBtn}>Logout</button>
             </div>
           )}
@@ -175,15 +175,15 @@ const Navbar = () => {
 const styles = {
   nav: {
     width: '100%',
-    height: '76px',
-    background: 'rgba(15, 14, 23, 0.75)',
-    backdropFilter: 'blur(20px)',
-    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+    height: '70px',
+    background: '#ffffff',
+    borderBottom: '1px solid #e2e8f0',
     position: 'sticky',
     top: 0,
     zIndex: 1000,
     display: 'flex',
     alignItems: 'center',
+    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.05)',
   },
   container: {
     maxWidth: '1200px',
@@ -195,82 +195,84 @@ const styles = {
     alignItems: 'center',
   },
   brand: {
-    fontSize: '1.5rem',
+    fontSize: '1.35rem',
     fontWeight: 800,
-    color: '#fffffe',
+    color: '#0f172a',
     display: 'flex',
     alignItems: 'center',
     gap: '0.4rem',
-    fontFamily: "'Outfit', sans-serif",
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
     letterSpacing: '-0.02em',
   },
-  brandLogo: {
+  brandIcon: {
     color: '#e94560',
-    fontSize: '1.7rem',
+    fontSize: '1.4rem',
   },
   brandHighlight: {
     color: '#e94560',
   },
   links: {
     display: 'flex',
-    gap: '1.8rem',
+    gap: '1.6rem',
     alignItems: 'center',
   },
   link: {
-    color: '#a7a9be',
-    fontSize: '0.95rem',
+    color: '#64748b',
+    fontSize: '0.92rem',
     fontWeight: 500,
     padding: '0.4rem 0',
     position: 'relative',
-    transition: 'color 0.3s ease',
+    transition: 'color 0.2s ease',
   },
   activeLink: {
-    color: '#fffffe',
-    borderBottom: '2px solid #e94560',
+    color: '#e94560',
+    fontWeight: 600,
   },
   registerBtn: {
-    background: 'linear-gradient(135deg, #e94560 0%, #4e54c8 100%)',
-    color: '#fffffe',
-    padding: '0.6rem 1.4rem',
-    borderRadius: '30px',
-    fontSize: '0.9rem',
+    background: '#e94560',
+    color: '#ffffff',
+    padding: '0.55rem 1.2rem',
+    borderRadius: '6px',
+    fontSize: '0.88rem',
     fontWeight: 600,
-    boxShadow: '0 4px 15px rgba(233, 69, 96, 0.2)',
-    transition: 'all 0.3s ease',
+    transition: 'all 0.2s ease',
+    boxShadow: '0 2px 4px rgba(233, 69, 96, 0.1)',
   },
   logoutBtn: {
-    background: 'rgba(255, 255, 255, 0.05)',
-    color: '#e94560',
-    border: '1px solid rgba(233, 69, 96, 0.2)',
-    padding: '0.5rem 1rem',
-    borderRadius: '30px',
+    background: '#f1f5f9',
+    color: '#64748b',
+    border: '1px solid #cbd5e1',
+    padding: '0.45rem 0.9rem',
+    borderRadius: '6px',
     cursor: 'pointer',
-    fontSize: '0.85rem',
+    fontSize: '0.82rem',
     fontWeight: 600,
-    transition: 'all 0.3s ease',
+    transition: 'all 0.2s ease',
   },
   userContainer: {
     display: 'flex',
     alignItems: 'center',
-    gap: '1rem',
-    paddingLeft: '1rem',
-    borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+    gap: '0.8rem',
+    paddingLeft: '0.8rem',
+    borderLeft: '1px solid #e2e8f0',
   },
   userInfo: {
-    color: '#fffffe',
-    fontSize: '0.9rem',
-    fontWeight: 500,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
+    lineHeight: 1.2,
+  },
+  userName: {
+    color: '#0f172a',
+    fontSize: '0.88rem',
+    fontWeight: 600,
   },
   roleTag: {
-    fontSize: '0.7rem',
+    fontSize: '0.68rem',
     color: '#e94560',
     textTransform: 'uppercase',
     fontWeight: 700,
-    letterSpacing: '0.05em',
-    marginTop: '-0.1rem',
+    letterSpacing: '0.02em',
   }
 }
 

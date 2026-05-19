@@ -2,17 +2,15 @@ const Footer = () => {
   return (
     <footer style={styles.footer}>
       <div style={styles.container}>
-        <div style={styles.brandSection}>
+        <div style={styles.meta}>
           <div style={styles.brand}>
-            <span style={styles.brandLogo}>✦</span>
-            GIU<span style={styles.brandHighlight}>Nexus</span>
+            <span style={styles.brandIcon}>✦</span>
+            GIU <span style={styles.brandHighlight}>Nexus</span>
           </div>
-          <p style={styles.tagline}>AI-Powered Career & Talent Platform</p>
+          <p style={styles.text}>© 2026 GIU Nexus. Software Engineering Spring 2026.</p>
         </div>
-        <div style={styles.divider}></div>
-        <div style={styles.metaSection}>
-          <p style={styles.text}>© 2026 GIU Nexus. All rights reserved.</p>
-          <p style={styles.sub}>German International University · Software Engineering Spring 2026</p>
+        <div style={styles.metaRight}>
+          <p style={styles.sub}>German International University</p>
         </div>
       </div>
     </footer>
@@ -21,66 +19,54 @@ const Footer = () => {
 
 const styles = {
   footer: {
-    backgroundColor: '#0f0e17',
-    color: '#a7a9be',
-    padding: '2.5rem 0',
+    backgroundColor: '#ffffff',
+    color: '#64748b',
+    padding: '2rem 0',
     marginTop: 'auto',
-    borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+    borderTop: '1px solid #e2e8f0',
   },
   container: {
     maxWidth: '1200px',
     margin: '0 auto',
     padding: '0 2rem',
     display: 'flex',
-    flexDirection: 'column',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: '1.2rem',
+    flexWrap: 'wrap',
+    gap: '1rem',
   },
-  brandSection: {
-    textAlign: 'center',
+  meta: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: '0.4rem',
   },
   brand: {
-    fontSize: '1.2rem',
+    fontSize: '1.05rem',
     fontWeight: 800,
-    color: '#fffffe',
+    color: '#0f172a',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
     gap: '0.3rem',
-    fontFamily: "'Outfit', sans-serif",
-    letterSpacing: '-0.01em',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
-  brandLogo: {
+  brandIcon: {
     color: '#e94560',
-    fontSize: '1.4rem',
   },
   brandHighlight: {
     color: '#e94560',
   },
-  tagline: {
-    fontSize: '0.85rem',
-    color: '#a7a9be',
-    marginTop: '0.3rem',
-    fontWeight: 500,
-    letterSpacing: '0.02em',
-  },
-  divider: {
-    width: '100%',
-    maxWidth: '300px',
-    height: '1px',
-    background: 'radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%)',
-  },
-  metaSection: {
-    textAlign: 'center',
-  },
   text: {
-    fontSize: '0.85rem',
-    color: '#a7a9be',
-    marginBottom: '0.2rem',
+    fontSize: '0.82rem',
+    color: '#64748b',
+  },
+  metaRight: {
+    textAlign: 'right',
   },
   sub: {
-    fontSize: '0.75rem',
-    color: '#5f6170',
+    fontSize: '0.82rem',
+    fontWeight: 500,
+    color: '#334155',
   },
 }
 

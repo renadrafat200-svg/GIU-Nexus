@@ -6,39 +6,35 @@ const HomePage = () => {
 
   return (
     <div style={styles.container}>
-      {/* Glow blobs background */}
-      <div style={styles.glow1}></div>
-      <div style={styles.glow2}></div>
-
       {/* Hero Section */}
-      <section style={styles.heroSection}>
-        <div style={styles.badge} className="glass-card">
-          <span style={styles.badgeDot}>✦</span>
-          <span>Next-Generation Career Platform</span>
+      <section style={styles.heroSection} className="animate-fade-in">
+        <div style={styles.badge}>
+          <span style={styles.badgeIcon}>✦</span>
+          <span>Official GIU Career Portal</span>
         </div>
         
         <h1 style={styles.heroTitle}>
-          Connecting GIU Talent with <br />
-          <span style={styles.gradientText}>AI-Powered</span> Opportunities
+          Connecting German International University <br />
+          Talent with <span style={styles.highlightText}>AI-Powered</span> Opportunities
         </h1>
         
         <p style={styles.heroSubtitle}>
-          The unified career portal for German International University. Explore internships, 
-          manage recruitment pipelines, and experience smart skill matching powered by state-of-the-art AI.
+          GIU Nexus bridges the gap between top-tier student capabilities and leading industry recruiters, 
+          leveraging state-of-the-art NLP models to streamline job search and candidate matching.
         </p>
 
         <div style={styles.heroButtons}>
-          <Link to="/jobs" style={styles.primaryBtn} className="glow-btn">
-            Explore Jobs
+          <Link to="/jobs" style={styles.primaryBtn}>
+            Browse Vacancies
           </Link>
           
           {!isAuthenticated ? (
             <Link to="/register" style={styles.secondaryBtn}>
-              Join GIU Nexus
+              Join Platform
             </Link>
           ) : (
             <Link to={user?.role === 'recruiter' ? '/recruiter/dashboard' : '/profile'} style={styles.secondaryBtn}>
-              Go to Dashboard
+              Dashboard Access
             </Link>
           )}
         </div>
@@ -46,70 +42,54 @@ const HomePage = () => {
 
       {/* Platform Features Grid */}
       <section style={styles.featuresSection}>
-        <h2 style={styles.sectionTitle}>Engineered for Intelligence</h2>
-        <p style={styles.sectionSubtitle}>Leveraging modern AI model pipelines to simplify student search and recruiter workflows.</p>
+        <div style={styles.sectionHeader}>
+          <h2 style={styles.sectionTitle}>Built on Talent Intelligence</h2>
+          <p style={styles.sectionSubtitle}>Empowering recruitment and career progression through advanced NLP matching pipelines.</p>
+        </div>
 
         <div style={styles.grid}>
           {/* Card 1 */}
-          <div style={styles.card} className="glass-card">
-            <div style={{ ...styles.cardIconCircle, background: 'rgba(233, 69, 96, 0.1)', color: '#e94560' }}>🤖</div>
+          <div style={styles.card} className="premium-card">
+            <div style={{ ...styles.cardIconCircle, background: 'rgba(233, 69, 96, 0.08)', color: '#e94560' }}>📊</div>
             <h3 style={styles.cardTitle}>Skill Extraction AI</h3>
             <p style={styles.cardText}>
-              Built with NER sequence classification models. Automatically analyzes candidate bio profiles to extract technical capabilities as interactive tag chips.
+              Leverages fine-tuned Named Entity Recognition (NER) models. Automatically analyzes bio descriptions on student profiles to identify and extract technical skills as structured tags.
             </p>
           </div>
 
           {/* Card 2 */}
-          <div style={styles.card} className="glass-card">
-            <div style={{ ...styles.cardIconCircle, background: 'rgba(78, 84, 200, 0.1)', color: '#8f94fb' }}>⚡</div>
-            <h3 style={styles.cardTitle}>Embedding Job Match</h3>
+          <div style={styles.card} className="premium-card">
+            <div style={{ ...styles.cardIconCircle, background: 'rgba(16, 185, 129, 0.08)', color: '#10b981' }}>⚡</div>
+            <h3 style={styles.cardTitle}>Vector Match Recommendations</h3>
             <p style={styles.cardText}>
-              Uses vector embedding similarity mappings. Candidates get a ranked list of recommended roles by comparing user profile skills directly with job descriptions.
+              Calculates cosine similarity metrics using pre-trained sentence transformer embeddings. Instantly generates ranked job listings corresponding to candidate capabilities.
             </p>
           </div>
 
           {/* Card 3 */}
-          <div style={styles.card} className="glass-card">
-            <div style={{ ...styles.cardIconCircle, background: 'rgba(16, 185, 129, 0.1)', color: '#10b981' }}>🎯</div>
-            <h3 style={styles.cardTitle}>Smart Classification</h3>
+          <div style={styles.card} className="premium-card">
+            <div style={{ ...styles.cardIconCircle, background: 'rgba(78, 84, 200, 0.08)', color: '#4e54c8' }}>🎯</div>
+            <h3 style={styles.cardTitle}>Zero-Shot Classification</h3>
             <p style={styles.cardText}>
-              Zero-Shot NLP categorizations. Automatically determines and assigns professional tags to new job listings in real-time based on the recruiter's posting details.
+              Categorizes job postings automatically upon creation. Deep learning classifiers evaluate raw job descriptions to dynamically organize and tag career domains for search indexing.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Interactive Portal Guide */}
-      <section style={styles.portalGuideSection}>
-        <div style={styles.guideContainer} className="glass-card">
-          <div style={styles.guideTextCol}>
-            <h2 style={styles.guideTitle}>Elevate Your Future</h2>
-            <p style={styles.guideText}>
-              Whether you are a student ready to launch your career, a recruiter sourcing the finest GIU graduates, 
-              or an administrator coordinating the platform—Nexus provides a central hub designed for speed, beauty, and security.
+      {/* Corporate Platform Trust */}
+      <section style={styles.trustSection}>
+        <div style={styles.trustBox} className="premium-card">
+          <div style={styles.trustTextCol}>
+            <h2 style={styles.trustTitle}>The Unified Nexus Framework</h2>
+            <p style={styles.trustText}>
+              Nexus coordinates core university authentication pipelines, administrative approval workflows for verified external recruiters, 
+              and robust status-tracking interfaces for student job applications—all packed in a secure, performant corporate architecture.
             </p>
-            <div style={styles.guideSteps}>
-              <div style={styles.step}>
-                <span style={styles.stepNum}>1</span>
-                <div>
-                  <h4 style={styles.stepTitle}>Register Profile</h4>
-                  <p style={styles.stepDesc}>Create an account as a Job Seeker or Recruiter.</p>
-                </div>
-              </div>
-              <div style={styles.step}>
-                <span style={styles.stepNum}>2</span>
-                <div>
-                  <h4 style={styles.stepTitle}>AI Skills Sync</h4>
-                  <p style={styles.stepDesc}>Let Hugging Face models parse and extract your profile skills automatically.</p>
-                </div>
-              </div>
-              <div style={styles.step}>
-                <span style={styles.stepNum}>3</span>
-                <div>
-                  <h4 style={styles.stepTitle}>Apply & Source</h4>
-                  <p style={styles.stepDesc}>Submit applications with a single click or review real-time applicant pipelines.</p>
-                </div>
-              </div>
+            <div style={styles.trustActions}>
+              <Link to="/register" style={{ ...styles.primaryBtn, padding: '0.75rem 1.8rem', fontSize: '0.9rem' }}>
+                Create Account
+              </Link>
             </div>
           </div>
         </div>
@@ -122,120 +102,101 @@ const styles = {
   container: {
     maxWidth: '1200px',
     margin: '0 auto',
-    padding: '4rem 2rem 6rem 2rem',
+    padding: '5rem 2rem 7rem 2rem',
     position: 'relative',
-  },
-  glow1: {
-    position: 'absolute',
-    width: '400px',
-    height: '400px',
-    top: '-10%',
-    left: '-10%',
-    background: 'radial-gradient(circle, rgba(233, 69, 96, 0.08) 0%, transparent 70%)',
-    pointerEvents: 'none',
-    zIndex: 0,
-  },
-  glow2: {
-    position: 'absolute',
-    width: '500px',
-    height: '500px',
-    bottom: '20%',
-    right: '-10%',
-    background: 'radial-gradient(circle, rgba(78, 84, 200, 0.08) 0%, transparent 70%)',
-    pointerEvents: 'none',
-    zIndex: 0,
+    backgroundColor: '#f8fafc',
   },
   heroSection: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
-    marginBottom: '6rem',
-    zIndex: 1,
-    position: 'relative',
-    animation: 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+    marginBottom: '6.5rem',
   },
   badge: {
     display: 'flex',
     alignItems: 'center',
-    gap: '0.5rem',
-    padding: '0.5rem 1.2rem',
+    gap: '0.4rem',
+    padding: '0.4rem 1rem',
     borderRadius: '30px',
-    fontSize: '0.85rem',
-    fontWeight: 600,
+    fontSize: '0.8rem',
+    fontWeight: 700,
     color: '#e94560',
-    marginBottom: '2rem',
-    border: '1px solid rgba(233, 69, 96, 0.15)',
+    backgroundColor: 'rgba(233, 69, 96, 0.08)',
+    marginBottom: '1.8rem',
+    textTransform: 'uppercase',
+    letterSpacing: '0.05em',
   },
-  badgeDot: {
+  badgeIcon: {
     color: '#e94560',
-    fontSize: '1.1rem',
   },
   heroTitle: {
-    fontSize: '3.6rem',
+    fontSize: '3.4rem',
     fontWeight: 800,
     lineHeight: 1.15,
     letterSpacing: '-0.03em',
-    color: '#fffffe',
+    color: '#0f172a',
     marginBottom: '1.5rem',
-    fontFamily: "'Outfit', sans-serif",
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
-  gradientText: {
-    background: 'linear-gradient(135deg, #e94560 20%, #8f94fb 100%)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
+  highlightText: {
+    color: '#e94560',
   },
   heroSubtitle: {
-    fontSize: '1.2rem',
-    color: '#a7a9be',
-    maxWidth: '760px',
+    fontSize: '1.15rem',
+    color: '#475569',
+    maxWidth: '780px',
     lineHeight: 1.6,
     marginBottom: '2.5rem',
   },
   heroButtons: {
     display: 'flex',
-    gap: '1.2rem',
+    gap: '1rem',
     justifyContent: 'center',
     flexWrap: 'wrap',
   },
   primaryBtn: {
-    padding: '0.9rem 2.2rem',
-    borderRadius: '30px',
-    fontSize: '1rem',
+    padding: '0.85rem 2rem',
+    background: '#e94560',
+    color: '#ffffff',
+    borderRadius: '6px',
+    fontSize: '0.95rem',
     fontWeight: 600,
-    boxShadow: '0 4px 20px rgba(233, 69, 96, 0.25)',
+    boxShadow: '0 4px 10px rgba(233, 69, 96, 0.15)',
     display: 'inline-block',
+    transition: 'all 0.2s ease',
   },
   secondaryBtn: {
-    padding: '0.9rem 2.2rem',
-    borderRadius: '30px',
-    fontSize: '1rem',
+    padding: '0.85rem 2rem',
+    background: '#ffffff',
+    border: '1px solid #cbd5e1',
+    color: '#334155',
+    borderRadius: '6px',
+    fontSize: '0.95rem',
     fontWeight: 600,
-    background: 'rgba(255, 255, 255, 0.05)',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    color: '#fffffe',
     display: 'inline-block',
-    transition: 'all 0.3s ease',
+    transition: 'all 0.2s ease',
   },
   featuresSection: {
-    marginBottom: '6rem',
+    marginBottom: '6.5rem',
+  },
+  sectionHeader: {
     textAlign: 'center',
-    zIndex: 1,
-    position: 'relative',
+    marginBottom: '3.5rem',
   },
   sectionTitle: {
-    fontSize: '2.4rem',
+    fontSize: '2.2rem',
     fontWeight: 800,
-    color: '#fffffe',
-    marginBottom: '0.6rem',
-    fontFamily: "'Outfit', sans-serif",
+    color: '#0f172a',
+    marginBottom: '0.5rem',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
     letterSpacing: '-0.02em',
   },
   sectionSubtitle: {
-    color: '#a7a9be',
-    fontSize: '1.05rem',
+    color: '#475569',
+    fontSize: '1rem',
     maxWidth: '580px',
-    margin: '0 auto 3.5rem auto',
+    margin: '0 auto',
     lineHeight: 1.5,
   },
   grid: {
@@ -245,105 +206,64 @@ const styles = {
   },
   card: {
     padding: '2.5rem 2rem',
-    borderRadius: '16px',
+    borderRadius: '10px',
     textAlign: 'left',
-    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   },
   cardIconCircle: {
-    width: '48px',
-    height: '48px',
-    borderRadius: '12px',
+    width: '44px',
+    height: '44px',
+    borderRadius: '8px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '1.4rem',
-    marginBottom: '1.5rem',
+    fontSize: '1.3rem',
+    marginBottom: '1.2rem',
   },
   cardTitle: {
-    fontSize: '1.3rem',
+    fontSize: '1.2rem',
     fontWeight: 700,
-    color: '#fffffe',
-    marginBottom: '0.8rem',
-    fontFamily: "'Outfit', sans-serif",
+    color: '#0f172a',
+    marginBottom: '0.6rem',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
   },
   cardText: {
-    color: '#a7a9be',
-    fontSize: '0.92rem',
+    color: '#475569',
+    fontSize: '0.88rem',
     lineHeight: 1.6,
   },
-  portalGuideSection: {
-    zIndex: 1,
-    position: 'relative',
-  },
-  guideContainer: {
-    padding: '4rem',
-    borderRadius: '24px',
+  trustSection: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    maxWidth: '900px',
-    margin: '0 auto',
+    justifyContent: 'center',
   },
-  guideTextCol: {
+  trustBox: {
+    padding: '3.5rem 3rem',
+    borderRadius: '12px',
     width: '100%',
+    maxWidth: '960px',
+    backgroundColor: '#ffffff',
+  },
+  trustTextCol: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
-  },
-  guideTitle: {
-    fontSize: '2.2rem',
-    fontWeight: 800,
-    color: '#fffffe',
-    marginBottom: '1rem',
-    fontFamily: "'Outfit', sans-serif",
-  },
-  guideText: {
-    color: '#a7a9be',
-    fontSize: '1.05rem',
-    lineHeight: 1.6,
-    maxWidth: '680px',
-    marginBottom: '3rem',
-  },
-  guideSteps: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '2rem',
-    width: '100%',
-    maxWidth: '540px',
-    textAlign: 'left',
-  },
-  step: {
-    display: 'flex',
     gap: '1.5rem',
-    alignItems: 'flex-start',
   },
-  stepNum: {
-    width: '36px',
-    height: '36px',
-    borderRadius: '50%',
-    background: 'rgba(233, 69, 96, 0.1)',
-    border: '1px solid rgba(233, 69, 96, 0.2)',
-    color: '#e94560',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontWeight: 700,
-    fontSize: '1rem',
-    flexShrink: 0,
-    fontFamily: "'Outfit', sans-serif",
+  trustTitle: {
+    fontSize: '2rem',
+    fontWeight: 800,
+    color: '#0f172a',
+    fontFamily: "'Plus Jakarta Sans', sans-serif",
+    letterSpacing: '-0.02em',
   },
-  stepTitle: {
-    fontSize: '1.1rem',
-    fontWeight: 700,
-    color: '#fffffe',
-    marginBottom: '0.2rem',
-    fontFamily: "'Outfit', sans-serif",
+  trustText: {
+    color: '#475569',
+    fontSize: '0.95rem',
+    lineHeight: 1.6,
+    maxWidth: '740px',
   },
-  stepDesc: {
-    color: '#a7a9be',
-    fontSize: '0.9rem',
-    lineHeight: 1.4,
+  trustActions: {
+    marginTop: '0.5rem',
   }
 }
 

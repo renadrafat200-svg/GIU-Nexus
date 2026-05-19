@@ -1,29 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
   --primary: #e94560;
-  --primary-rgb: 233, 69, 96;
   --primary-hover: #d2354f;
-  --secondary: #4e54c8;
-  --secondary-rgb: 78, 84, 200;
-  --accent: #8f94fb;
-  --bg-dark: #0f0e17;
-  --bg-card: #1f1e2e;
-  --bg-input: #2a293e;
-  --text-primary: #fffffe;
-  --text-secondary: #a7a9be;
-  --text-muted: #6b7280;
-  --border-color: rgba(255, 255, 255, 0.08);
+  --primary-light: rgba(233, 69, 96, 0.08);
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  
   --success: #10b981;
   --error: #ef4444;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --font-heading: 'Outfit', sans-serif;
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.025);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-premium: 0 20px 25px -5px rgba(15, 23, 42, 0.05), 0 10px 10px -5px rgba(15, 23, 42, 0.02);
 }
 
 /* Base Styles */
@@ -35,55 +45,57 @@
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
+  background-color: var(--bg-app);
+  color: var(--text-main);
   line-height: 1.5;
   overflow-x: hidden;
-  background-image: 
-    radial-gradient(circle at 10% 20%, rgba(233, 69, 96, 0.05) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(78, 84, 200, 0.05) 0%, transparent 40%);
-  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
+  color: var(--slate-900);
   letter-spacing: -0.02em;
 }
 
 a {
   text-decoration: none;
   color: inherit;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Global Teammate Style Overrides via Pseudo-classes (Safe & Automated) */
-/* Hover & Focus states do not exist in their inline styles, so this safely enhances them */
+/* Global Teammate Style Overrides (Safe & Automated) */
+/* Styling elements cleanly without touching teammate code */
 
 input, select, textarea {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   font-family: var(--font-body);
+  border: 1px solid var(--slate-200) !important;
+  background-color: #ffffff !important;
+  color: var(--slate-800) !important;
+}
+
+input:hover, select:hover, textarea:hover {
+  border-color: var(--slate-300) !important;
 }
 
 input:focus, select:focus, textarea:focus {
   border-color: var(--primary) !important;
-  box-shadow: 0 0 0 4px rgba(233, 69, 96, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.12) !important;
   outline: none !important;
-  transform: translateY(-1px);
 }
 
 button {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   font-family: var(--font-heading);
   font-weight: 600;
-  position: relative;
-  overflow: hidden;
 }
 
 button:not(:disabled):hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(233, 69, 96, 0.3) !important;
-  filter: brightness(1.1);
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 4px 12px rgba(233, 69, 96, 0.15) !important;
 }
 
 button:not(:disabled):active {
@@ -91,33 +103,33 @@ button:not(:disabled):active {
 }
 
 button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed !important;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-dark);
+  background: var(--slate-50);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
+  background: var(--slate-300);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--slate-400);
 }
 
 /* Modern Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -125,32 +137,26 @@ button:disabled {
   }
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
+.animate-fade-in {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Glassmorphism Utilities */
-.glass-card {
-  background: rgba(31, 30, 46, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-lg);
+/* Premium Card System */
+.premium-card {
+  background: var(--bg-card);
+  border: 1px solid var(--slate-200);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary) 100%);
+.premium-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-premium);
+  border-color: var(--slate-300);
+}
+
+.gradient-heading {
+  background: linear-gradient(135deg, var(--slate-900) 0%, var(--slate-700) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.glow-btn {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
-  border: none !important;
-  color: var(--text-primary) !important;
 }
