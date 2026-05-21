@@ -13,18 +13,6 @@ import JobListPage from './pages/JobListPage'
 import JobDetailPage from './pages/JobDetailPage'
 import CreateJobPage from './pages/CreateJobPage'
 import EditJobPage from './pages/EditJobPage'
-import RecommendedJobsPage from './pages/RecommendedJobsPage'
-import SavedJobsPage from './pages/SavedJobsPage'
-import ProfilePage from './pages/ProfilePage'
-import EditProfilePage from './pages/EditProfilePage'
-import ChangePasswordPage from './pages/ChangePasswordPage'
-import MyApplicationsPage from './pages/MyApplicationsPage'
-import ApplicantsPage from './pages/ApplicantsPage'
-import RecruiterDashboard from './pages/RecruiterDashboard'
-import AdminDashboard from './pages/AdminDashboard'
-import AdminUsersPage from './pages/AdminUsersPage'
-import AdminJobsPage from './pages/AdminJobsPage'
-import PendingRecruitersPage from './pages/PendingRecruitersPage'
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth()
@@ -58,28 +46,12 @@ function App() {
         <Route path="/jobs" element={<JobListPage />} />
         <Route path="/jobs/:id" element={<JobDetailPage />} />
 
-        {/* Any logged-in user */}
+        {/* Private */}
         <Route path="/" element={<PrivateRoute><HomePage /></PrivateRoute>} />
-        <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-        <Route path="/profile/edit" element={<PrivateRoute><EditProfilePage /></PrivateRoute>} />
-        <Route path="/profile/change-password" element={<PrivateRoute><ChangePasswordPage /></PrivateRoute>} />
 
-        {/* Job Seeker only */}
-        <Route path="/jobs/recommended" element={<RoleRoute roles={['jobSeeker']}><RecommendedJobsPage /></RoleRoute>} />
-        <Route path="/jobs/saved" element={<RoleRoute roles={['jobSeeker']}><SavedJobsPage /></RoleRoute>} />
-        <Route path="/my-applications" element={<RoleRoute roles={['jobSeeker']}><MyApplicationsPage /></RoleRoute>} />
-
-        {/* Recruiter only */}
-        <Route path="/recruiter/dashboard" element={<RoleRoute roles={['recruiter']}><RecruiterDashboard /></RoleRoute>} />
+        {/* Recruiter */}
         <Route path="/jobs/create" element={<RoleRoute roles={['recruiter']}><CreateJobPage /></RoleRoute>} />
         <Route path="/jobs/:id/edit" element={<RoleRoute roles={['recruiter']}><EditJobPage /></RoleRoute>} />
-        <Route path="/jobs/:id/applicants" element={<RoleRoute roles={['recruiter']}><ApplicantsPage /></RoleRoute>} />
-
-        {/* Admin only */}
-        <Route path="/admin/dashboard" element={<RoleRoute roles={['admin']}><AdminDashboard /></RoleRoute>} />
-        <Route path="/admin/users" element={<RoleRoute roles={['admin']}><AdminUsersPage /></RoleRoute>} />
-        <Route path="/admin/jobs" element={<RoleRoute roles={['admin']}><AdminJobsPage /></RoleRoute>} />
-        <Route path="/admin/pending-recruiters" element={<RoleRoute roles={['admin']}><PendingRecruitersPage /></RoleRoute>} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
