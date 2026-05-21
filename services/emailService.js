@@ -11,6 +11,10 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendResetEmail = async (toEmail, resetUrl) => {
+  console.log('📧 Attempting to send reset email to:', toEmail);
+  console.log('📧 From:', process.env.EMAIL_USER);
+  console.log('📧 Reset URL:', resetUrl);
+
   const mailOptions = {
     from:    `"GIU Nexus" <${process.env.EMAIL_USER}>`,
     to:      toEmail,
@@ -23,7 +27,14 @@ const sendResetEmail = async (toEmail, resetUrl) => {
       <p>If you did not request this, ignore this email.</p>
     `,
   };
-  await transporter.sendMail(mailOptions);
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('✅ Email sent successfully! Message ID:', info.messageId);
+  } catch (err) {
+    console.error('❌ Email sending failed:', err.message);
+    throw err;
+  }
 };
 
 module.exports = { sendResetEmail };
