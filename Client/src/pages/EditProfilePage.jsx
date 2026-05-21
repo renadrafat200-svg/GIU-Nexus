@@ -132,7 +132,6 @@ const styles = {
   success: { color: '#27ae60', fontWeight: 600, marginBottom: '1rem', textAlign: 'center' },
   center: { textAlign: 'center', padding: '4rem', color: '#9999BB' },
 
-  
 }
 
 export default EditProfilePage
