@@ -49,7 +49,7 @@ const Navbar = () => {
               <>
                 <Link to="/jobs/recommended" className={`nav-link ${isActive('/jobs/recommended') ? 'active' : ''}`}>Recommended</Link>
                 <Link to="/jobs/saved" className={`nav-link ${isActive('/jobs/saved') ? 'active' : ''}`}>Saved</Link>
-                <Link to="/applications/my" className={`nav-link ${isActive('/applications/my') ? 'active' : ''}`}>Applications</Link>
+                <Link to="/my-applications" className={`nav-link ${isActive('/my-applications') ? 'active' : ''}`}>Applications</Link>
                 <Link to="/profile" className={`nav-link ${isActive('/profile') ? 'active' : ''}`}>Profile</Link>
               </>
             )}
@@ -57,14 +57,14 @@ const Navbar = () => {
             {isAuthenticated && user?.role === 'recruiter' && (
               <>
                 <Link to="/recruiter/dashboard" className={`nav-link ${isActive('/recruiter/dashboard') ? 'active' : ''}`}>Dashboard</Link>
-                <Link to="/recruiter/jobs/create" className={`nav-link ${isActive('/recruiter/jobs/create') ? 'active' : ''}`}>Post Job</Link>
+                <Link to="/jobs/create" className={`nav-link ${isActive('/jobs/create') ? 'active' : ''}`}>Post Job</Link>
               </>
             )}
 
             {isAuthenticated && user?.role === 'admin' && (
               <>
                 <Link to="/admin/dashboard" className={`nav-link ${isActive('/admin/dashboard') ? 'active' : ''}`}>Dashboard</Link>
-                <Link to="/admin/recruiters" className={`nav-link ${isActive('/admin/recruiters') ? 'active' : ''}`}>Recruiters</Link>
+                <Link to="/admin/pending-recruiters" className={`nav-link ${isActive('/admin/pending-recruiters') ? 'active' : ''}`}>Recruiters</Link>
                 <Link to="/admin/jobs" className={`nav-link ${isActive('/admin/jobs') ? 'active' : ''}`}>Jobs</Link>
                 <Link to="/admin/users" className={`nav-link ${isActive('/admin/users') ? 'active' : ''}`}>Users</Link>
               </>
