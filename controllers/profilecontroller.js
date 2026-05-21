@@ -1,10 +1,10 @@
 const bcrypt = require('bcryptjs');
 const User   = require('../models/userModel');
-const { extractSkillsFromBio } = require('./hfcontroller'); // FIXED: lowercase c to match actual filename
+const { extractSkillsFromBio } = require('./hfcontroller');
 
 exports.getProfile = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).select('-password');
     return res.status(200).json({ success: true, user });
   } catch (err) {
     next(err);
@@ -17,7 +17,7 @@ exports.updateProfile = async (req, res, next) => {
     const updates = {};
     allowed.forEach(f => { if (req.body[f] !== undefined) updates[f] = req.body[f]; });
 
-    const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true, runValidators: true });
+    const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true, runValidators: true }).select('-password');
     return res.status(200).json({ success: true, user });
   } catch (err) {
     next(err);
@@ -36,7 +36,6 @@ exports.changePassword = async (req, res, next) => {
 
     const user = await User.findById(req.user._id).select('+password');
 
-    // FIXED: matchPassword doesn't exist on User model — use bcrypt.compare directly
     const match = await bcrypt.compare(currentPassword, user.password);
     if (!match) {
       return res.status(401).json({ success: false, message: 'Current password is incorrect' });
