@@ -6,7 +6,7 @@
 // POST /api/v1/jobs/:id/save      — Job Seeker (toggle)
 // ============================================================
 const JobPost = require('../models/JobPost');
-const User    = require('../models/User');
+const User    = require('../models/userModel');
 const { getEmbeddings, cosineSimilarity } = require('./hfcontroller');
 
 /**
