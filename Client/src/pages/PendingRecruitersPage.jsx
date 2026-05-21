@@ -17,7 +17,7 @@ const PendingRecruitersPage = () => {
   const handleStatus = async (userId, status) => {
     setUpdating(userId)
     try {
-      await api.patch(`/users/${userId}`, { status })
+      await api.patch(`/users/${userId}/status`, { status })
       setRecruiters(recruiters.filter(r => r._id !== userId))
     } catch { alert('Failed to update status.') }
     finally { setUpdating(null) }
