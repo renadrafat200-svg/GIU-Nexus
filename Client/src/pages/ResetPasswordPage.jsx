@@ -35,50 +35,38 @@ const ResetPasswordPage = () => {
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card} className="premium-card animate-fade-in">
-        <div style={styles.header}>
-          <div style={styles.badge}>Reset</div>
-          <h2 style={styles.title}>Create New Password</h2>
-          <p style={styles.sub}>Enter your new password below. Ensure it is secure and unique.</p>
-        </div>
+    <div style={styles.wrapper}>
+      <div style={styles.bubble1} />
+      <div style={styles.bubble2} />
+      <div style={styles.bubble3} />
 
-        {error && (
-          <div style={styles.errorContainer}>
-            <span style={styles.errorIcon}>⚠</span>
-            <p style={styles.error}>{error}</p>
-          </div>
-        )}
+      <div className="glass-card fade-in" style={styles.card}>
+        <h2 style={styles.title}>Reset Password</h2>
+        <p style={styles.sub}>Enter your new password below</p>
 
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>New Password</label>
-            <input
-              style={styles.input}
-              type="password"
-              name="newPassword"
-              placeholder="Enter new password"
-              value={form.newPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        {error && <p className="error-text">{error}</p>}
 
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Confirm New Password</label>
-            <input
-              style={styles.input}
-              type="password"
-              name="confirmPassword"
-              placeholder="Re-enter new password"
-              value={form.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button style={styles.btn} type="submit" disabled={loading}>
-            {loading ? 'Resetting password...' : 'Update password'}
+        <form onSubmit={handleSubmit}>
+          <input
+            className="input-field"
+            type="password"
+            name="newPassword"
+            placeholder="🔒 New Password"
+            value={form.newPassword}
+            onChange={handleChange}
+            required
+          />
+          <input
+            className="input-field"
+            type="password"
+            name="confirmPassword"
+            placeholder="🔒 Confirm New Password"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+          <button className="btn-primary" style={{ width: '100%', marginTop: '0.5rem' }} type="submit" disabled={loading}>
+            {loading ? 'Resetting...' : 'Reset Password'}
           </button>
         </form>
       </div>
@@ -87,105 +75,49 @@ const ResetPasswordPage = () => {
 }
 
 const styles = {
-  container: { 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '80vh', 
-    padding: '2rem',
-    backgroundColor: '#f8fafc'
-  },
-  card: { 
-    background: '#ffffff', 
-    padding: '3rem 2.5rem', 
-    borderRadius: '12px', 
-    width: '100%', 
-    maxWidth: '440px',
-    border: '1px solid #e2e8f0',
-  },
-  header: {
-    marginBottom: '2rem',
-    textAlign: 'center',
-  },
-  badge: {
-    display: 'inline-block',
-    padding: '0.25rem 0.75rem',
-    borderRadius: '30px',
-    fontSize: '0.75rem',
-    fontWeight: 700,
-    color: '#e94560',
-    backgroundColor: 'rgba(233, 69, 96, 0.08)',
-    marginBottom: '0.8rem',
-    textTransform: 'uppercase',
-    letterSpacing: '0.05em',
-  },
-  title: { 
-    fontSize: '1.8rem', 
-    fontWeight: 800, 
-    color: '#0f172a', 
-    marginBottom: '0.6rem',
-    fontFamily: "'Plus Jakarta Sans', sans-serif",
-    letterSpacing: '-0.02em',
-  },
-  sub: { 
-    color: '#64748b', 
-    fontSize: '0.9rem',
-    lineHeight: 1.6,
-  },
-  errorContainer: {
+  wrapper: {
+    minHeight: '90vh',
     display: 'flex',
     alignItems: 'center',
-    gap: '0.6rem',
-    background: '#fef2f2',
-    border: '1px solid #fee2e2',
-    padding: '0.75rem 1rem',
-    borderRadius: '8px',
-    marginBottom: '1.2rem',
+    justifyContent: 'center',
+    padding: '2rem',
+    position: 'relative',
+    zIndex: 1,
   },
-  errorIcon: {
-    color: '#ef4444',
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
+  card: {
+    width: '100%',
+    maxWidth: '420px',
+    padding: '2.5rem 2rem',
+    textAlign: 'center',
   },
-  error: { 
-    color: '#ef4444', 
-    fontSize: '0.85rem',
-    margin: 0,
-    fontWeight: 500,
+  title: {
+    fontSize: '2.2rem',
+    fontWeight: 700,
+    color: '#1A1A2E',
+    marginBottom: '0.4rem',
   },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.2rem',
+  sub: {
+    color: '#9999BB',
+    fontSize: '0.9rem',
+    marginBottom: '1.8rem',
   },
-  inputGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.4rem',
+  bubble1: {
+    position: 'fixed', width: '250px', height: '250px', borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(255,182,215,0.5), rgba(200,160,228,0.2))',
+    top: '10%', right: '10%', filter: 'blur(1px)', pointerEvents: 'none', zIndex: 0,
+    animation: 'float1 7s ease-in-out infinite',
   },
-  label: {
-    fontSize: '0.82rem',
-    fontWeight: 600,
-    color: '#334155',
+  bubble2: {
+    position: 'fixed', width: '180px', height: '180px', borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(255,107,157,0.4), rgba(180,140,220,0.15))',
+    bottom: '15%', left: '8%', filter: 'blur(1px)', pointerEvents: 'none', zIndex: 0,
+    animation: 'float2 9s ease-in-out infinite',
   },
-  input: { 
-    width: '100%', 
-    padding: '0.75rem 1rem', 
-    borderRadius: '8px', 
-    fontSize: '0.95rem', 
-    display: 'block',
-    outline: 'none',
-  },
-  btn: { 
-    width: '100%', 
-    padding: '0.75rem 1rem', 
-    background: '#e94560', 
-    color: '#ffffff', 
-    border: 'none', 
-    borderRadius: '8px', 
-    fontSize: '0.95rem', 
-    fontWeight: 600,
-    cursor: 'pointer',
+  bubble3: {
+    position: 'fixed', width: '120px', height: '120px', borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(255,200,230,0.6), rgba(220,180,240,0.2))',
+    top: '50%', left: '5%', filter: 'blur(1px)', pointerEvents: 'none', zIndex: 0,
+    animation: 'float1 11s ease-in-out infinite',
   },
 }
 

@@ -22,175 +22,108 @@ const ForgotPasswordPage = () => {
 
   if (submitted) {
     return (
-      <div style={styles.container}>
-        <div style={styles.card} className="premium-card animate-fade-in">
-          <div style={styles.successBadge}>✓</div>
-          <h2 style={styles.title}>Check your email</h2>
-          <p style={styles.sub}>
-            We have sent a secure password reset link to <strong>{email}</strong> if it is registered on our platform.
-          </p>
-          <Link to="/login" style={styles.backBtn}>
-            Back to Sign In
-          </Link>
+      <div style={styles.wrapper}>
+        <div style={styles.bubble1} />
+        <div style={styles.bubble2} />
+        <div style={styles.bubble3} />
+        <div className="glass-card fade-in" style={styles.card}>
+          <h2 style={styles.title}>Check Your Email</h2>
+          <p style={styles.sub}>If an account exists with that email, a password reset link has been sent.</p>
+          <Link to="/login" style={styles.loginLink}>Back to Login</Link>
         </div>
       </div>
     )
   }
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card} className="premium-card animate-fade-in">
-        <div style={styles.header}>
-          <div style={styles.badge}>Security</div>
-          <h2 style={styles.title}>Forgot Password?</h2>
-          <p style={styles.sub}>Enter the email address associated with your account and we will email you a secure link to reset it.</p>
-        </div>
+    <div style={styles.wrapper}>
+      <div style={styles.bubble1} />
+      <div style={styles.bubble2} />
+      <div style={styles.bubble3} />
 
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Email Address</label>
-            <input
-              style={styles.input}
-              type="email"
-              placeholder="e.g. name@student.giu-uni.de"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              required
-            />
-          </div>
+      <div className="glass-card fade-in" style={styles.card}>
+        <h2 style={styles.title}>Forgot Password</h2>
+        <p style={styles.sub}>Enter your email and we'll send you a reset link</p>
 
-          <button style={styles.btn} type="submit" disabled={loading}>
-            {loading ? 'Sending link...' : 'Send reset link'}
+        <form onSubmit={handleSubmit}>
+          <input
+            className="input-field"
+            type="email"
+            placeholder="📧 Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+          <button className="btn-primary" style={{ width: '100%', marginTop: '0.5rem' }} type="submit" disabled={loading}>
+            {loading ? 'Sending...' : 'Send Reset Link'}
           </button>
         </form>
 
-        <div style={styles.footer}>
-          <Link to="/login" style={styles.backLink}>
-            ← Return to Sign In
-          </Link>
-        </div>
+        <p style={styles.bottom}>
+          <Link to="/login" style={styles.loginLink}>Back to Login</Link>
+        </p>
       </div>
     </div>
   )
 }
 
 const styles = {
-  container: { 
-    display: 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    minHeight: '80vh', 
-    padding: '2rem',
-    backgroundColor: '#f8fafc'
-  },
-  card: { 
-    background: '#ffffff', 
-    padding: '3rem 2.5rem', 
-    borderRadius: '12px', 
-    width: '100%', 
-    maxWidth: '440px',
-    border: '1px solid #e2e8f0',
-  },
-  successBadge: {
-    width: '48px',
-    height: '48px',
-    borderRadius: '50%',
-    backgroundColor: '#ecfdf5',
-    color: '#10b981',
-    border: '1px solid #a7f3d0',
+  wrapper: {
+    minHeight: '90vh',
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    fontSize: '1.4rem',
-    fontWeight: 'bold',
-    margin: '0 auto 1.5rem auto',
+    justifyContent: 'center',
+    padding: '2rem',
+    position: 'relative',
+    zIndex: 1,
   },
-  header: {
-    marginBottom: '2rem',
+  card: {
+    width: '100%',
+    maxWidth: '420px',
+    padding: '2.5rem 2rem',
     textAlign: 'center',
   },
-  badge: {
-    display: 'inline-block',
-    padding: '0.25rem 0.75rem',
-    borderRadius: '30px',
-    fontSize: '0.75rem',
+  title: {
+    fontSize: '2.2rem',
     fontWeight: 700,
-    color: '#e94560',
-    backgroundColor: 'rgba(233, 69, 96, 0.08)',
-    marginBottom: '0.8rem',
-    textTransform: 'uppercase',
-    letterSpacing: '0.05em',
+    color: '#1A1A2E',
+    marginBottom: '0.4rem',
   },
-  title: { 
-    fontSize: '1.8rem', 
-    fontWeight: 800, 
-    color: '#0f172a', 
-    marginBottom: '0.6rem',
-    fontFamily: "'Plus Jakarta Sans', sans-serif",
-    letterSpacing: '-0.02em',
-  },
-  sub: { 
-    color: '#64748b', 
+  sub: {
+    color: '#9999BB',
     fontSize: '0.9rem',
+    marginBottom: '1.8rem',
     lineHeight: 1.6,
   },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1.2rem',
-  },
-  inputGroup: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.4rem',
-  },
-  label: {
-    fontSize: '0.82rem',
-    fontWeight: 600,
-    color: '#334155',
-  },
-  input: { 
-    width: '100%', 
-    padding: '0.75rem 1rem', 
-    borderRadius: '8px', 
-    fontSize: '0.95rem', 
-    display: 'block',
-    outline: 'none',
-  },
-  btn: { 
-    width: '100%', 
-    padding: '0.75rem 1rem', 
-    background: '#e94560', 
-    color: '#ffffff', 
-    border: 'none', 
-    borderRadius: '8px', 
-    fontSize: '0.95rem', 
-    fontWeight: 600,
-    cursor: 'pointer',
-  },
-  backBtn: {
-    display: 'inline-block',
+  bottom: {
     marginTop: '1.5rem',
-    padding: '0.55rem 1.4rem',
-    background: '#f1f5f9',
-    border: '1px solid #cbd5e1',
-    borderRadius: '8px',
-    color: '#334155',
-    fontSize: '0.88rem',
-    fontWeight: 600,
-    textAlign: 'center',
+    color: '#9999BB',
+    fontSize: '0.9rem',
   },
-  footer: {
-    marginTop: '1.5rem',
-    textAlign: 'center',
-    borderTop: '1px solid #f1f5f9',
-    paddingTop: '1.2rem',
+  loginLink: {
+    color: '#1A1A2E',
+    fontWeight: 700,
+    textDecoration: 'underline',
+    textUnderlineOffset: '3px',
   },
-  backLink: {
-    fontSize: '0.88rem',
-    color: '#64748b',
-    fontWeight: 500,
-  }
+  bubble1: {
+    position: 'fixed', width: '250px', height: '250px', borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(255,182,215,0.5), rgba(200,160,228,0.2))',
+    top: '10%', right: '10%', filter: 'blur(1px)', pointerEvents: 'none', zIndex: 0,
+    animation: 'float1 7s ease-in-out infinite',
+  },
+  bubble2: {
+    position: 'fixed', width: '180px', height: '180px', borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(255,107,157,0.4), rgba(180,140,220,0.15))',
+    bottom: '15%', left: '8%', filter: 'blur(1px)', pointerEvents: 'none', zIndex: 0,
+    animation: 'float2 9s ease-in-out infinite',
+  },
+  bubble3: {
+    position: 'fixed', width: '120px', height: '120px', borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(255,200,230,0.6), rgba(220,180,240,0.2))',
+    top: '50%', left: '5%', filter: 'blur(1px)', pointerEvents: 'none', zIndex: 0,
+    animation: 'float1 11s ease-in-out infinite',
+  },
 }
 
 export default ForgotPasswordPage
