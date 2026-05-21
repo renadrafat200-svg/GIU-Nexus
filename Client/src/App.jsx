@@ -20,11 +20,8 @@ import MyApplicationsPage from './pages/MyApplicationsPage'
 import ApplicantsPage from './pages/ApplicantsPage'
 import RecruiterDashboard from './pages/RecruiterDashboard'
 import RecommendedJobsPage from './pages/RecommendedJobsPage'
-import SavedJobsPage from './pages/SavedJobsPage'
-import AdminDashboard from './pages/AdminDashboard'
-import AdminUsersPage from './pages/AdminUsersPage'
-import AdminJobsPage from './pages/AdminJobsPage'
 import PendingRecruitersPage from './pages/PendingRecruitersPage'
+import AdminJobsPage from './pages/AdminJobsPage'
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth()
@@ -66,7 +63,6 @@ function App() {
 
         {/* Job Seeker */}
         <Route path="/jobs/recommended" element={<RoleRoute roles={['jobSeeker']}><RecommendedJobsPage /></RoleRoute>} />
-        <Route path="/jobs/saved" element={<RoleRoute roles={['jobSeeker']}><SavedJobsPage /></RoleRoute>} />
         <Route path="/my-applications" element={<RoleRoute roles={['jobSeeker']}><MyApplicationsPage /></RoleRoute>} />
 
         {/* Recruiter */}
@@ -76,10 +72,8 @@ function App() {
         <Route path="/jobs/:id/applicants" element={<RoleRoute roles={['recruiter']}><ApplicantsPage /></RoleRoute>} />
 
         {/* Admin */}
-        <Route path="/admin/dashboard" element={<RoleRoute roles={['admin']}><AdminDashboard /></RoleRoute>} />
-        <Route path="/admin/users" element={<RoleRoute roles={['admin']}><AdminUsersPage /></RoleRoute>} />
-        <Route path="/admin/jobs" element={<RoleRoute roles={['admin']}><AdminJobsPage /></RoleRoute>} />
         <Route path="/admin/pending-recruiters" element={<RoleRoute roles={['admin']}><PendingRecruitersPage /></RoleRoute>} />
+        <Route path="/admin/jobs" element={<RoleRoute roles={['admin']}><AdminJobsPage /></RoleRoute>} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" />} />
