@@ -212,3 +212,4 @@ const styles = {
 }
 
 export default JobDetailPage
+// JobDetailPage.jsx — Judy Elrayess
