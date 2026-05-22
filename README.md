@@ -68,7 +68,7 @@ GIU-Nexus/
 - [Renad Rafaat](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=renadrafat200-svg)
 - [Ahmed Hesham](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=ahmedouf727)
 - [Ali Sherif](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=alisherif)
-- [Mostafa Elshehy](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=mostafaelsheehy)
+- [Mostafa Elshehy](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=mostafaelsheehy8)
 - [Nadeen Yasser](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=nadeenyasser)
 - [Malak Ehab](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=malakehab)
 - [Judy Ahmed](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=judyahmed)
