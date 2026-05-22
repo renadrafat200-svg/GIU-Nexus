@@ -72,6 +72,6 @@ GIU-Nexus/
 - [Nadeen Yasser](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=nadeenyasser)
 - [Malak Ehab](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=malakehab)
 - [Judy Ahmed](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=judyahmed)
-- [Karem Hany](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=karemhany)
+- [Kareem Elayouty](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=kareemelayouty)
 - [Omar Abdelkarem](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=omarabdelkarem)
 - [Obay Habbash](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=obayhabbash)
