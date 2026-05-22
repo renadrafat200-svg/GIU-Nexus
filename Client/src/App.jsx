@@ -22,6 +22,7 @@ import RecruiterDashboard from './pages/RecruiterDashboard'
 import RecommendedJobsPage from './pages/RecommendedJobsPage'
 import PendingRecruitersPage from './pages/PendingRecruitersPage'
 import AdminJobsPage from './pages/AdminJobsPage'
+import SavedJobsPage from './pages/SavedJobsPage'
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth()
@@ -63,6 +64,7 @@ function App() {
 
         {/* Job Seeker */}
         <Route path="/jobs/recommended" element={<RoleRoute roles={['jobSeeker']}><RecommendedJobsPage /></RoleRoute>} />
+        <Route path="/jobs/saved" element={<RoleRoute roles={['jobSeeker']}><SavedJobsPage /></RoleRoute>} />
         <Route path="/my-applications" element={<RoleRoute roles={['jobSeeker']}><MyApplicationsPage /></RoleRoute>} />
 
         {/* Recruiter */}
