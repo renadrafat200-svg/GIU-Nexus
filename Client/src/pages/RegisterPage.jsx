@@ -179,3 +179,5 @@ const styles = {
 }
 
 export default RegisterPage
+//editing the register pageee
+//testing
