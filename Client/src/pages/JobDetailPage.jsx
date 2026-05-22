@@ -17,6 +17,10 @@ const JobDetailPage = () => {
   const [saved, setSaved] = useState(false)
   const [showApplyForm, setShowApplyForm] = useState(false)
 
+  // Cover letter AI state
+  const [generatingCL, setGeneratingCL] = useState(false)
+  const [clError, setClError] = useState('')
+
   useEffect(() => {
     api.get(`/jobs/${id}`)
       .then(res => setJob(res.data.job))
@@ -41,7 +45,25 @@ const JobDetailPage = () => {
     try { await api.post(`/jobs/${id}/save`); setSaved(s => !s) } catch {}
   }
 
+  const handleGenerateCoverLetter = async () => {
+    setGeneratingCL(true)
+    setClError('')
+    try {
+      const res = await api.post(`/jobs/${id}/generate-cover-letter`)
+      setCoverLetter(res.data.coverLetter)
+      setShowApplyForm(true)
+    } catch (err) {
+      setClError(err.response?.data?.message || 'Failed to generate cover letter.')
+    } finally {
+      setGeneratingCL(false)
+    }
+  }
+
   const typeColor = { 'full-time': '#27ae60', 'part-time': '#f39c12', 'internship': '#e94560' }
+  const categoryColor = {
+    'Frontend': '#27ae60', 'Backend': '#2980b9', 'AI/ML': '#8e44ad',
+    'DevOps': '#16a085', 'Data Engineering': '#e67e22', 'Other': '#95a5a6'
+  }
 
   if (loading) return <p style={styles.center}>Loading job...</p>
   if (error) return <p style={{ ...styles.center, color: '#e94560' }}>{error}</p>
@@ -58,12 +80,18 @@ const JobDetailPage = () => {
               <h1 style={styles.title}>{job.title}</h1>
               <p style={styles.company}>🏢 {job.company}</p>
             </div>
-            <span style={{ ...styles.badge, background: typeColor[job.type] || '#9999BB' }}>{job.type}</span>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+              <span style={{ ...styles.badge, background: typeColor[job.type] || '#9999BB' }}>{job.type}</span>
+              {job.category && (
+                <span style={{ ...styles.badge, background: categoryColor[job.category] || '#95a5a6' }}>
+                  {job.category}
+                </span>
+              )}
+            </div>
           </div>
           <div style={styles.metaRow}>
             <span style={styles.meta}>📍 {job.location}</span>
             {job.salary && <span style={styles.meta}>💰 {job.salary}</span>}
-            <span style={styles.meta}>🏷️ {job.category || 'General'}</span>
             <span style={styles.meta}>🪑 {job.totalSlots} slots</span>
             <span style={{ ...styles.meta, color: job.status === 'open' ? '#27ae60' : '#e94560', fontWeight: 600 }}>
               {job.status === 'open' ? '🟢 Open' : '🔴 Closed'}
@@ -80,6 +108,8 @@ const JobDetailPage = () => {
               </ul>
             </>
           )}
+
+          {/* Job Seeker Actions */}
           {isAuthenticated && user?.role === 'jobSeeker' && job.status === 'open' && (
             <div style={styles.actions}>
               {applied ? <p style={styles.successMsg}>✅ Application submitted!</p> : (
@@ -90,23 +120,58 @@ const JobDetailPage = () => {
               <button className="btn-primary" style={{ ...styles.applyBtn, ...styles.saveBtn }} onClick={handleSave}>
                 {saved ? '🔖 Saved' : '🔖 Save Job'}
               </button>
+              {!applied && (
+                <button
+                  className="btn-primary"
+                  style={{ ...styles.applyBtn, background: '#8e44ad' }}
+                  onClick={handleGenerateCoverLetter}
+                  disabled={generatingCL}
+                >
+                  {generatingCL ? '✨ Generating...' : '✨ Generate Cover Letter'}
+                </button>
+              )}
             </div>
           )}
+
+          {clError && <p className="error-text" style={{ marginTop: '0.8rem' }}>{clError}</p>}
+          {generatingCL && (
+            <div style={styles.generatingBox}>
+              <p style={{ color: '#8e44ad', fontWeight: 600 }}>🤖 AI is crafting your cover letter...</p>
+              <p style={{ color: '#9999BB', fontSize: '0.85rem' }}>This may take up to 30 seconds</p>
+            </div>
+          )}
+
           {!isAuthenticated && (
             <div style={styles.actions}>
               <Link to="/login" className="btn-primary" style={styles.applyBtn}>Login to Apply</Link>
             </div>
           )}
+
           {showApplyForm && !applied && (
             <div className="glass-card fade-in" style={styles.applyForm}>
               <h3 style={styles.sectionHead}>Your Application</h3>
+              {coverLetter && (
+                <p style={{ color: '#8e44ad', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
+                  ✨ AI-generated cover letter — feel free to edit before submitting
+                </p>
+              )}
               {applyError && <p className="error-text">{applyError}</p>}
               <form onSubmit={handleApply}>
-                <textarea className="input-field" placeholder="Write a cover letter (optional)..." value={coverLetter} onChange={e => setCoverLetter(e.target.value)} rows={5} style={{ resize: 'vertical' }} />
-                <button className="btn-primary" style={{ width: '100%' }} type="submit" disabled={applying}>{applying ? 'Submitting...' : 'Submit Application'}</button>
+                <textarea
+                  className="input-field"
+                  placeholder="Write a cover letter (optional)..."
+                  value={coverLetter}
+                  onChange={e => setCoverLetter(e.target.value)}
+                  rows={8}
+                  style={{ resize: 'vertical' }}
+                />
+                <button className="btn-primary" style={{ width: '100%' }} type="submit" disabled={applying}>
+                  {applying ? 'Submitting...' : 'Submit Application'}
+                </button>
               </form>
             </div>
           )}
+
           {isAuthenticated && user?.role === 'recruiter' && (
             <div style={styles.actions}>
               <Link to={`/jobs/${id}/edit`} className="btn-primary" style={styles.applyBtn}>✏️ Edit Job</Link>
@@ -141,6 +206,7 @@ const styles = {
   applyBtn: { padding: '0.75rem 2rem', borderRadius: '10px', fontWeight: 600, textDecoration: 'none', display: 'inline-block' },
   saveBtn: { background: 'transparent', border: '2px solid #e94560', color: '#e94560' },
   applyForm: { padding: '1.5rem', marginTop: '1.5rem' },
+  generatingBox: { marginTop: '1rem', padding: '1rem', background: 'rgba(142,68,173,0.06)', borderRadius: '10px', textAlign: 'center' },
   successMsg: { color: '#27ae60', fontWeight: 600 },
   center: { textAlign: 'center', padding: '4rem', color: '#9999BB' },
 }
