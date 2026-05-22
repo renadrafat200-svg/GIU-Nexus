@@ -1,4 +1,3 @@
-
   // jobRoutes.js  —  MALAK's file
 
   const express = require('express');
@@ -14,6 +13,8 @@
     getRecommendedJobs, getMyJobs, getSavedJobs, toggleSaveJob,
   } = require('../controllers/jobextracontroller.JS');
 
+  const { generateCoverLetterForJob } = require('../controllers/hfcontroller');
+
   // ── Specific named routes (must come before /:id) ──────────────
   router.get('/recommended', protect, authorize('jobSeeker'), getRecommendedJobs);
   router.get('/my-jobs',     protect, authorize('recruiter'), getMyJobs);
@@ -28,6 +29,9 @@
   router.patch('/:id',  protect, authorize('recruiter'), updateJob);
   router.delete('/:id', protect, authorize('recruiter', 'admin'), deleteJob);
   router.post('/:id/save', protect, authorize('jobSeeker'), toggleSaveJob);
+
+  // ── Cover letter generation (bonus AI feature) ─────────────────
+  router.post('/:id/generate-cover-letter', protect, authorize('jobSeeker'), generateCoverLetterForJob);
 
   // ── Applications sub-routes ────────────────────────────────────
   router.post('/:jobId/apply',      protect, authorize('jobSeeker'), applyToJob);
