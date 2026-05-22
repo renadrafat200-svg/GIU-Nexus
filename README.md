@@ -74,4 +74,4 @@ GIU-Nexus/
 - [Judy Ahmed](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=judyahmed)
 - [Kareem Elayouty](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=kareemelayouty)
 - [Omar Abdelkarem](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=omarabdelkarem)
-- [Obay Habbash](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=obayhabbash)
+- [Obay Habbash](https://github.com/renadrafat200-svg/GIU-Nexus/commits?author=obay-habbash)
