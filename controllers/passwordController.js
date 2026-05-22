@@ -24,7 +24,7 @@ exports.forgotPassword = async (req, res, next) => {
     user.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // 10 min
     await user.save();
 
-    const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/auth/reset-password/${rawToken}`;
+    const resetUrl = `http://localhost:5173/reset-password/${rawToken}`;
 
     try {
       await sendResetEmail(user.email, resetUrl);
