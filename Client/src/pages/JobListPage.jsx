@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../services/api'
@@ -105,4 +106,3 @@ const styles = {
 }
 
 export default JobListPage
-// JobListPage.jsx — Judy Elrayess
