@@ -129,8 +129,7 @@ exports.forgotPassword = async (req, res, next) => {
 
     await user.save();
 
-    const origin = req.headers.origin || req.headers.referer || 'http://localhost:5173';
-    const frontendUrl = origin.replace(/\/api.*/, '').replace(/:5000/, ':5173');
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
     const resetUrl = `${frontendUrl}/reset-password/${resetToken}`;
 
     try {
@@ -189,7 +188,6 @@ exports.resetPassword = async (req, res, next) => {
 
     await user.save();
 
-    // FIXED: was generateToken(user._id, user.role) which is undefined — now uses signToken(user)
     const token = signToken(user);
 
     res.status(200).json({
